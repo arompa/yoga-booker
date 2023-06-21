@@ -13,7 +13,8 @@ export default defineConfig({
   timeout: 30000,
   use: {
     testIdAttribute: 'id',
-    trace: 'on-first-retry'
+    trace: 'on-first-retry',
+    locale: 'pl-PL'
   },
   testDir: './tests',
   /* Run tests in files in parallel */

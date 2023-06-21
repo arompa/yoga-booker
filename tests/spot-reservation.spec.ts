@@ -24,7 +24,7 @@ test('Reserve a spot', async ({ page }) => {
   await spotField.click();
 
   const multisportRadioButton = page.getByText('MULTISPORT');
-  const acceptRegulations = page.getByRole("checkbox", {name: /Akceptuj/})
+  const acceptRegulations = page.getByTestId('r2').first();
   const reserveButton = page.getByText(/Zarezerwuj/);
 
   await multisportRadioButton.check();

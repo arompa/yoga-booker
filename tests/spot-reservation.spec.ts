@@ -28,7 +28,7 @@ test('Reserve a spot', async ({ page }) => {
   const reserveButton = page.getByText(/Zarezerwuj/);
 
   await multisportRadioButton.check();
-  await acceptRegulations.check({ force: true });
+  await acceptRegulations.click({ force: true });
   await reserveButton.click({ force: true });
 
   await page.waitForResponse;

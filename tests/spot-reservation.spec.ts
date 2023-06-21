@@ -24,11 +24,11 @@ test('Reserve a spot', async ({ page }) => {
   await spotField.click();
 
   const multisportRadioButton = await page.getByText('MULTISPORT');
-  const acceptRegulations = await page.getByLabel(/Akceptuj/);
+  // const acceptRegulations = await page.getByLabel(/regulamin/);
   const reserveButton = await page.getByText(/Zarezerwuj/);
 
   await multisportRadioButton.check();
-  await acceptRegulations.check({ force: true });
+  await page.locator('#r2').check({ force: true });
   await reserveButton.click({ force: true });
 
   await page.waitForResponse;

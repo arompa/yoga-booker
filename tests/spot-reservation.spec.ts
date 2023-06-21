@@ -28,9 +28,11 @@ test('Reserve a spot', async ({ page }) => {
   // const acceptRegulations = await page.getByLabel(/regulamin/);
   const reserveButton = await page.getByText(/Zarezerwuj/);
 
+  
   await multisportRadioButton.check();
   await page.locator('#r2').check({ force: true });
   await reserveButton.click({ force: true });
+
 
   await page.waitForResponse;
   await page.goto('https://studiojogapark.pl/strefaklienta/index.php?s=moje_konto_zajecia');

@@ -12,9 +12,13 @@ function nextWeek(): string {
   return formattedDate;
 }
 
-test('Reserve a spot', async ({ page }) => {
-  const nextWeekDate = nextWeek();
+const nextWeekDate = nextWeek();
+const currentDate = new Date();
+currentDate.setDate(currentDate.getDate() + 7);
+const polishDateFormat = format(currentDate, 'dd.MM.yyyy')
 
+test('Reserve a spot', async ({ page }) => {
+  
   await page.goto('https://studiojogapark.pl/strefaklienta/index.php?s=logowanie');
 
   const login = process.env.LOGIN as string;
@@ -47,8 +51,10 @@ test('Reserve a spot', async ({ page }) => {
   await page.goto('https://studiojogapark.pl/strefaklienta/index.php?s=moje_konto_zajecia');
 
   const reservation = await page.getByText(/HATHA JOGA 0 » MULTISPORT/).first();
+  const reservationDate = await page.getByText(`${polishDateFormat} 20:00`).first();
   
   await expect(reservation).toBeVisible();
+  await expect(reservationDate).toBeVisible();
 
 
 });

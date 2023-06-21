@@ -3,6 +3,11 @@ on:
   schedule:
     - cron:  '5 19 * * 3'
     - cron:  '5 20 * * 3'
+  push:
+    branches: [ main ]
+env:
+  LOGIN: ${{ secrets.LOGIN }}
+  PASSWORD: ${{ secrets.PASSWORD }}
 jobs:
   test:
     timeout-minutes: 60

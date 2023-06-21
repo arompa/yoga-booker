@@ -1,6 +1,7 @@
 name: Playwright Tests
 on:
   schedule:
+    - cron:  '05 18 * * 3'
     - cron:  '36 18 * * WED'
 env:
   LOGIN: ${{ secrets.LOGIN }}

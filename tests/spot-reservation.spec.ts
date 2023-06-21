@@ -8,9 +8,9 @@ test('Reserve a spot', async ({ page }) => {
   const login = process.env.LOGIN as string;
   const password = process.env.PASSWORD as string;
 
-  const loginField = page.getByPlaceholder('E-mail');
-  const passwordField = page.getByPlaceholder('Hasło');
-  const submitButton = page.getByText(/Zaloguj się/);
+  const loginField = await page.getByPlaceholder('E-mail');
+  const passwordField = await page.getByPlaceholder('Hasło');
+  const submitButton = await page.getByText(/Zaloguj się/);
 
   await loginField.fill(login);
   await passwordField.fill(password);
@@ -20,12 +20,12 @@ test('Reserve a spot', async ({ page }) => {
   // const spotField = page.getByRole('cell', {name: /HATHA JOGA 0 20:00 - 21:15/}).first();
 
   await page.goto('https://studiojogapark.pl/strefaklienta/index.php?s=sala_1');
-  const spotField = page.getByRole('cell', {name: /HATHA JOGA I 10:00 - 11:15/}).first();
+  const spotField = await page.getByRole('cell', {name: /HATHA JOGA I 10:00 - 11:15/}).first();
   await spotField.click();
 
-  const multisportRadioButton = page.getByText('MULTISPORT');
-  const acceptRegulations = page.getByTestId('r2').first();
-  const reserveButton = page.getByText(/Zarezerwuj/);
+  const multisportRadioButton = await page.getByText('MULTISPORT');
+  const acceptRegulations = await page.getByLabel(/Akceptuj/);
+  const reserveButton = await page.getByText(/Zarezerwuj/);
 
   await multisportRadioButton.check();
   await acceptRegulations.check({ force: true });
@@ -34,7 +34,7 @@ test('Reserve a spot', async ({ page }) => {
   await page.waitForResponse;
   await page.goto('https://studiojogapark.pl/strefaklienta/index.php?s=moje_konto_zajecia');
 
-  const reservation = page.getByText(/HATHA JOGA 0 » MULTISPORT/).first();
+  const reservation = await page.getByText(/HATHA JOGA 0 » MULTISPORT/).first();
   
   await expect(reservation).toBeVisible();
 
